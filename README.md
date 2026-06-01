@@ -19,13 +19,11 @@ Tested on Android and iOS. Requires Flutter 3.x+.
 - View full product details
 - Add/remove favorites — persisted across app restarts
 
-## Key Features
+## Assumptions & trade-offs
 
-* Browse and explore a catalog of products through a clean and responsive interface.
-* View detailed information for individual products on a dedicated product details screen.
-* Save favorite products and access them anytime from the Favorites section.
-* Persistent favorites storage ensures saved items remain available across app restarts.
-* Quickly search and filter products to find items of interest.
-* Simple and intuitive navigation between Products and Favorites using a bottom navigation bar.
-* Fast, lightweight, and user-friendly design focused on a smooth browsing experience.
-
+- **State management:** Provider (chosen per requirement).
+- **Navigation:** Bottom nav bar for Products/Favorites tabs; not specified in the brief so chose the simplest option.
+- **Favorites storage:** Stores product IDs in `shared_preferences`. Product data is pulled from the in-memory list (no separate favorites cache).
+- **Detail fetch:** Calls `GET /products/{id}` independently so the detail screen works even if the list hasn't loaded yet.
+- **Search:** Client-side — the API has no search endpoint.
+- **No routing library:** `Navigator.push` is sufficient for two screens deep.
